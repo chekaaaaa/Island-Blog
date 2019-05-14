@@ -1,49 +1,43 @@
 let app = document.getElementById("app");
 
 window.onload = function () {
-    goToInitialRoute();
-    
-}
-
-window.onhashchange = function() { 
     let pathname = window.location.hash;
-    goToRoute(pathname)
-}
-
-function goToInitialRoute() {
-    for(route of routes)
-    {
-        if(route.initial == true) {
-            fetch(route.file).then(function(response) {
-                return response.text().then(function(text) {
-                  app.innerHTML = text;
-                });
-              });
+    pathname = pathname.substring(1)
+    if (pathname == "") {
+        for (route of routes) {
+            if (route.initial == true) {
+                window.location.hash = route.path;
+            }
+        }
+    } else {
+        let routeIsAvailable = false
+        for (route of routes) {
+            if (route.path == pathname) {
+                window.onhashchange()
+                routeIsAvailable = true;
+            }
+        }
+        if (routeIsAvailable == false) {
+            for (route of routes) {
+                if (route.initial == true) {
+                    window.location.hash = route.path;
+                }
+            }
         }
     }
 }
 
-async function goToRoute(path) {
+window.onhashchange = function () {
+    let path = window.location.hash;
     path = path.substring(1);
-    for(route of routes)
-    {
-        if(route.path == path){
-            fetchPageAndDisplay(route.file)
+    for (route of routes) {
+        if (route.path === path) {
+            fetch(route.file).then(function (response) {
+                return response.text().then(function (text) {
+                    app.innerHTML = text;
+                });
+            });
         }
     }
 }
 
-function fetchPageAndDisplay(file) {
-    app.classList.add("appTransition");
-    app.addEventListener("transitionend", replace(file));
-
-    function replace(file) {
-        fetch(file).then(function (response) {
-            return response.text().then(function (text) {
-                app.innerHTML = text;
-            });
-        });
-        app.removeEventListener("transitionend", replace);
-        app.classList.remove("appTransition");
-    };
-}
