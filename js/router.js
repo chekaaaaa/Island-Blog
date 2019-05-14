@@ -2,6 +2,7 @@ let app = document.getElementById("app");
 
 window.onload = function () {
     goToInitialRoute();
+    
 }
 
 window.onhashchange = function() { 
@@ -13,7 +14,11 @@ function goToInitialRoute() {
     for(route of routes)
     {
         if(route.initial == true) {
-            fetchPageAndDisplay(route.file)
+            fetch(route.file).then(function(response) {
+                return response.text().then(function(text) {
+                  app.innerHTML = text;
+                });
+              });
         }
     }
 }
@@ -28,10 +33,17 @@ async function goToRoute(path) {
     }
 }
 
-function fetchPageAndDisplay(file){
-    fetch(file).then(function(response) {
-        return response.text().then(function(text) {
-          app.innerHTML = text;
+function fetchPageAndDisplay(file) {
+    app.classList.add("appTransition");
+    app.addEventListener("transitionend", replace(file));
+
+    function replace(file) {
+        fetch(file).then(function (response) {
+            return response.text().then(function (text) {
+                app.innerHTML = text;
+            });
         });
-      });
+        app.removeEventListener("transitionend", replace);
+        app.classList.remove("appTransition");
+    };
 }
