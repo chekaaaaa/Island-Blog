@@ -1,5 +1,18 @@
 let app = document.getElementById("app");
 
+
+
+function prefetch(pathname) {
+    for (route of routes) {
+        if (route.path == pathname) {
+            if (route.prefetched == true) {
+                fetch(route.file, {cache: "reload"});
+                route.prefetched = false;
+            }
+        }
+    }
+}
+
 window.onload = function () {
     let pathname = window.location.hash;
     pathname = pathname.substring(1)
@@ -32,7 +45,7 @@ window.onhashchange = function () {
     path = path.substring(1);
     for (route of routes) {
         if (route.path === path) {
-            fetch(route.file).then(function (response) {
+            fetch(route.file, {cache: "force-cache"}).then(function (response) {
                 return response.text().then(function (text) {
                     app.innerHTML = text;
                 });
