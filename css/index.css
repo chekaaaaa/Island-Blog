@@ -1,5 +1,6 @@
 * {
     margin: 0;
+    padding: 0;
     font-family: 'Courier New', Courier, monospace
 }
 
@@ -8,16 +9,14 @@ body {
     grid-template-areas: 
         "nav app";
     grid-template-columns: 25% 75%;
-    grid-template-rows: 100vh 100%;
 }
 
 nav {
     grid-area: nav;
     background: rgb(6, 70, 6);
     color: white;
-    display: grid;
-    grid-template-rows: 30% 3em 60%;
-    grid-template-columns: 10% 90%;
+    min-height: 100vh;
+    max-height: 100%;
 }
 
 #app {
@@ -29,13 +28,15 @@ nav {
 
 nav > h1 {
     font-size: 28px;
-    grid-row: 2;
-    grid-column: 2;
+    position: fixed;
+    left: 20px;
+    top: 30%;
 }
 
 nav > div {
-    grid-column: 2;
-    grid-row: 3;
+    position: fixed;
+    left: 20px;
+    top: calc(30% + 3em)
 }
 
 nav > div > a {
@@ -63,6 +64,16 @@ nav > div > a:hover, a:focus {
 .home > img {
     min-height: 100vh;
     max-width: 100%;
+}
+
+#gallery {
+    width: calc(100% - 40px);
+    margin: 20px;
+}
+
+
+#gallery > div > img {
+    width: calc(100% / 3 - 9px);
 }
 
 
