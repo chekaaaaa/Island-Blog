@@ -26,6 +26,20 @@ window.onhashchange = async function () {
     const pathname = window.location.hash.substring(1);
     const route = routes.find(route => route.path === pathname);
     const res = await fetch(route.file, { cache: "force-cache" });
-    app.innerHTML = await res.text();
+    anime({
+        targets: '#app',
+        opacity: 0,
+        easing: 'easeInOutCirc',
+        duration: 700,
+        complete: async function() {
+            app.innerHTML = await res.text();
+            anime({
+                targets: '#app',
+                opacity: 1,
+                easing: 'easeInOutCirc',
+                duration: 700,
+            });
+        }
+      });  
 }
 

@@ -24,11 +24,7 @@ nav {
     grid-area: app;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     transition-duration: 1000ms;
-    opacity: 1;
-}
-
-.appTransition {
-    opacity: 0 !important;
+    opacity: 0;
 }
 
 nav > h1 {
