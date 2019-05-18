@@ -23,14 +23,17 @@ function openImgZoom(img) {
     });
     imgWrapper.style.backgroundImage = 'url(' + path + ')';
     EXIF.getData(img, function() {
-        var allMetaData = EXIF.getAllTags(this);
-        console.log(allMetaData);
+        var date = EXIF.getTag(this, "DateTimeOriginal");
+        var iso = EXIF.getTag(this, "ISOSpeedRatings");
+        var Brennweite = EXIF.getTag(this, "FocalLengthIn35mmFilm");
+        var exposure = EXIF.getTag(this, "ExposureTime");
+        var aperture = EXIF.getTag(this, "ApertureValue");
         info.innerHTML = `<h2>Bild Informationen</h2><br>
-                             Datum: ${allMetaData.DateTimeOriginal} <br>
-                             Iso: ${allMetaData.ISOSpeedRatings} <br>
-                             Brennweite: ${allMetaData.FocalLengthIn35mmFilm}mm <br>
-                             Belichtungszeit: ${allMetaData.ExposureTime.toFixed(4)}s <br>
-                             Blende: ${allMetaData.ApertureValue} `
+                             Datum: ${date} <br>
+                             Iso: ${iso} <br>
+                             Brennweite: ${Brennweite}mm <br>
+                             Belichtungszeit: ${exposure.toFixed(4)}s <br>
+                             Blende: ${aperture} `
     });
 }
 
