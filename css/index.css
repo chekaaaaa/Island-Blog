@@ -117,4 +117,9 @@ nav > div > a:hover, a:focus {
     margin-left: 75vw;
     padding: 25px;
     color: white;
+    transition: all 400ms cubic-bezier(0.075, 0.82, 0.165, 1)
+}
+
+.moveRight {
+    transform: translate(25vw);
 }

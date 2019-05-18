@@ -10,29 +10,6 @@ document.addEventListener('click', function (event) {
     }
 })
 
-zoomel.addEventListener('click', function (event) {
-    imgWrapper.classList.remove('fullSize');
-    if (!(event.path[0].id === 'imgWrapper')) {
-        anime({
-            targets: zoomel,
-            opacity: 0,
-            easing: 'cubicBezier(.5, .05, .1, .3)',
-            duration: 600,
-            complete: function () {
-                zoomel.style.visibility = "hidden";
-                document.body.classList.remove('noScroll')
-                document.documentElement.scrollTop = scrolled;
-            }
-        });
-    }
-    event.stopPropagation(); 
-})
-
-imgWrapper.addEventListener('click', function(event) {
-    imgWrapper.classList.toggle('fullSize');
-    event.stopPropagation();
-})
-
 function openImgZoom(img) {
     let path = img.src
     zoomel.style.visibility = "visible";
@@ -51,8 +28,34 @@ function openImgZoom(img) {
         info.innerHTML = `<h2>Bild Informationen</h2><br>
                              Datum: ${allMetaData.DateTimeOriginal} <br>
                              Iso: ${allMetaData.ISOSpeedRatings} <br>
-                             Brennweite: ${allMetaData.FocalLength}mm <br>
+                             Brennweite: ${allMetaData.FocalLengthIn35mmFilm}mm <br>
                              Belichtungszeit: ${allMetaData.ExposureTime.toFixed(4)}s <br>
                              Blende: ${allMetaData.ApertureValue} `
     });
 }
+
+zoomel.addEventListener('click', function (event) {
+    imgWrapper.classList.remove('fullSize');
+    if (!(event.path[0].id === 'imgWrapper')) {
+        anime({
+            targets: zoomel,
+            opacity: 0,
+            easing: 'cubicBezier(.5, .05, .1, .3)',
+            duration: 600,
+            complete: function () {
+                zoomel.style.visibility = "hidden";
+                document.body.classList.remove('noScroll')
+                document.documentElement.scrollTop = scrolled;
+            }
+        });
+    }
+    event.stopPropagation(); 
+})
+
+
+
+imgWrapper.addEventListener('click', function(event) {
+    info.classList.toggle('moveRight');
+    imgWrapper.classList.toggle('fullSize');
+    event.stopPropagation();
+})
