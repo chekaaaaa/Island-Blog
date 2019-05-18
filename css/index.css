@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Courier New', Courier, monospace
+    font-family: 'Courier New', Courier, monospace;
 }
 
 body {
@@ -92,6 +92,29 @@ nav > div > a:hover, a:focus {
     position: absolute;
     background-position: center;
     background-repeat: no-repeat;
-    height: 70%;
-    width: 70%;
+    margin-top: 15vh;
+    margin-left: 5vw;
+    height: 70vh;
+    width: 70vw;
+    transition: all 400ms cubic-bezier(0.075, 0.82, 0.165, 1)
+}
+
+.fullSize {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 100vh !important;
+    width: 100vw !important;
+}
+
+.noScroll {
+    overflow: hidden;
+    position: fixed;
+}
+
+#info {
+    position: absolute;
+    margin-top: 15vh;
+    margin-left: 75vw;
+    padding: 25px;
+    color: white;
 }
