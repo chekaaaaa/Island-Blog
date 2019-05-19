@@ -12,6 +12,8 @@ document.addEventListener('click', function (event) {
 
 function openImgZoom(img) {
     let path = img.src
+    path = path.replace('.jpg', '_high.jpg');
+    console.log(path)
     zoomel.style.visibility = "visible";
     scrolled = window.pageYOffset || document.documentElement.scrollTop;
     document.body.classList.add('noScroll');
@@ -21,20 +23,24 @@ function openImgZoom(img) {
         easing: 'cubicBezier(.5, .05, .1, .3)',
         duration: 600,
     });
-    imgWrapper.style.backgroundImage = 'url(' + path + ')';
-    EXIF.getData(img, function() {
-        var date = EXIF.getTag(this, "DateTimeOriginal");
-        var iso = EXIF.getTag(this, "ISOSpeedRatings");
-        var Brennweite = EXIF.getTag(this, "FocalLengthIn35mmFilm");
-        var exposure = EXIF.getTag(this, "ExposureTime");
-        var aperture = EXIF.getTag(this, "ApertureValue");
-        info.innerHTML = `<h2>Bild Informationen</h2><br>
+    var imgHighRes = new Image();
+    imgHighRes.onload = function () {
+        imgWrapper.style.backgroundImage = 'url(' + path + ')';
+        EXIF.getData(imgHighRes, function () {
+            var date = EXIF.getTag(this, "DateTimeOriginal");
+            var iso = EXIF.getTag(this, "ISOSpeedRatings");
+            var Brennweite = EXIF.getTag(this, "FocalLengthIn35mmFilm");
+            var exposure = EXIF.getTag(this, "ExposureTime");
+            var aperture = EXIF.getTag(this, "ApertureValue");
+            info.innerHTML = `<h2>Bild Informationen</h2><br>
                              Datum: ${date} <br>
                              Iso: ${iso} <br>
                              Brennweite: ${Brennweite}mm <br>
                              Belichtungszeit: ${exposure.toFixed(4)}s <br>
                              Blende: ${aperture} `
-    });
+        });
+    };
+    imgHighRes.src = path;
 }
 
 zoomel.addEventListener('click', function (event) {
@@ -52,12 +58,12 @@ zoomel.addEventListener('click', function (event) {
             }
         });
     }
-    event.stopPropagation(); 
+    event.stopPropagation();
 })
 
 
 
-imgWrapper.addEventListener('click', function(event) {
+imgWrapper.addEventListener('click', function (event) {
     info.classList.toggle('moveRight');
     imgWrapper.classList.toggle('fullSize');
     event.stopPropagation();
