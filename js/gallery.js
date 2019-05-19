@@ -21,7 +21,7 @@ function openImgZoom(img) {
         targets: zoomel,
         opacity: 1,
         easing: 'cubicBezier(.5, .05, .1, .3)',
-        duration: 600,
+        duration: 500,
     });
     var imgHighRes = new Image();
     imgHighRes.onload = function () {
@@ -50,7 +50,7 @@ zoomel.addEventListener('click', function (event) {
             targets: zoomel,
             opacity: 0,
             easing: 'cubicBezier(.5, .05, .1, .3)',
-            duration: 600,
+            duration: 500,
             complete: function () {
                 zoomel.style.visibility = "hidden";
                 document.body.classList.remove('noScroll')
