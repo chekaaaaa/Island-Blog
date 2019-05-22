@@ -9,6 +9,7 @@ body {
     grid-template-areas: 
         "nav app";
     grid-template-columns: 25% 75%;
+    overflow-y: scroll;
 }
 
 nav {
