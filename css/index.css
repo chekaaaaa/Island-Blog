@@ -6,7 +6,7 @@
 
 body {
     display: grid;
-    grid-template-areas: 
+    grid-template-areas:
         "nav app";
     grid-template-columns: 25% 75%;
     overflow-y: scroll;
@@ -27,20 +27,20 @@ nav {
     opacity: 0;
 }
 
-nav > h1 {
+nav>h1 {
     font-size: 28px;
     position: fixed;
     left: 20px;
     top: 30%;
 }
 
-nav > div {
+nav>div {
     position: fixed;
     left: 20px;
     top: calc(30% + 3em)
 }
 
-nav > div > a {
+nav>div>a {
     font-size: 22px;
     text-decoration: none;
     color: white;
@@ -52,17 +52,65 @@ nav > div > a {
 }
 
 
-nav > div > a:hover, a:focus {
+nav>div>a:hover,
+a:focus {
     background-size: 100% 3px;
 }
 
+#touren>div>ul>li>a {
+    font-size: 22px;
+    text-decoration: none;
+    color: black;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size .3s;
+}
+
+
+#touren>div>ul>li>a:hover,
+a:focus {
+    background-size: 100% 3px;
+}
+
+#touren>div>ul {
+    list-style: none;
+}
+
+#touren {
+    margin: 20px;
+}
+
+#scrollToTop {
+    background: rgb(6, 70, 6);
+    color: white;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    width: 200px;
+    border-radius: 10px;
+    position: fixed;
+    bottom: 30px;
+    right: 40px;
+    z-index: 4;
+    display: table;
+    cursor: pointer;
+    transition: all 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#scrollToTop:hover {
+    background: rgb(17, 61, 17);
+    transform: scale(1.04)
+}
+
 .home {
-    display: flex; 
-    justify-content: center; 
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-.home > img {
+.home>img {
     min-height: 100vh;
     max-width: 100%;
 }
@@ -73,7 +121,7 @@ nav > div > a:hover, a:focus {
 }
 
 
-#gallery > div > img {
+#gallery>div>img {
     width: calc(100% / 3 - 9px);
 }
 
@@ -89,7 +137,7 @@ nav > div > a:hover, a:focus {
     height: 100%;
     width: 100%;
     z-index: 3;
-  }
+}
 
 #imgWrapper {
     background-image: url('');

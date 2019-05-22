@@ -12,25 +12,29 @@ function prefetch(pathname) {
 }
 
 function lazyLoad() {
-const images = document.querySelectorAll('.zoomable');
+    const images = document.querySelectorAll('.zoomable');
 
-let observer = new IntersectionObserver(onIntersection);
-  images.forEach(image => {
-    observer.observe(image);
-  });
-
-  function onIntersection(entries) {
-    entries.forEach(entry => {
-      if (entry.intersectionRatio > 0) {
-        observer.unobserve(entry.target);
-        const img = entry.target;
-        img.classList.remove('fixedSize')
-        const src = img.getAttribute('data-src');
-
-        img.setAttribute('src', src);
-      }
+    let observer = new IntersectionObserver(onIntersection);
+    images.forEach(image => {
+        observer.observe(image);
     });
-  }
+
+    function onIntersection(entries) {
+        entries.forEach(entry => {
+            if (entry.intersectionRatio > 0) {
+                observer.unobserve(entry.target);
+                const img = entry.target;
+                img.classList.remove('fixedSize')
+                const src = img.getAttribute('data-src');
+
+                img.setAttribute('src', src);
+            }
+        });
+    }
+}
+
+function scrollToTop() {
+    app.scrollIntoView({behavior: 'smooth'});
 }
 
 window.onload = function () {
@@ -47,24 +51,29 @@ window.onload = function () {
 
 window.onhashchange = async function () {
     const pathname = window.location.hash.substring(1);
-    const route = routes.find(route => route.path === pathname);
-    const res = await fetch(route.file, {
-        cache: "force-cache"
-    });
-    anime({
-        targets: '#app',
-        opacity: 0,
-        easing: 'easeInOutCirc',
-        duration: 700,
-        complete: async function () {
-            app.innerHTML = await res.text();
-            lazyLoad();
-            anime({
-                targets: '#app',
-                opacity: 1,
-                easing: 'easeInOutCirc',
-                duration: 700,
-            });
-        }
-    });
+    if (pathname.includes('_')) {
+        var element = document.getElementById(pathname.split('_')[1]);
+        element.scrollIntoView({behavior: 'smooth'});
+    } else {
+        const route = routes.find(route => route.path === pathname);
+        const res = await fetch(route.file, {
+            cache: "force-cache"
+        });
+        anime({
+            targets: '#app',
+            opacity: 0,
+            easing: 'easeInOutCirc',
+            duration: 700,
+            complete: async function () {
+                app.innerHTML = await res.text();
+                lazyLoad();
+                anime({
+                    targets: '#app',
+                    opacity: 1,
+                    easing: 'easeInOutCirc',
+                    duration: 700,
+                });
+            }
+        });
+    }
 }
