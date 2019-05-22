@@ -76,9 +76,13 @@ nav > div > a:hover, a:focus {
     width: calc(100% / 3 - 9px);
 }
 
+.fixedSize {
+    margin-bottom: 400px;
+}
+
 #zoomel {
     background: rgba(36, 35, 35, 0.918);
-    position: absolute;
+    position: fixed;
     visibility: hidden;
     opacity: 0;
     height: 100%;
@@ -87,7 +91,7 @@ nav > div > a:hover, a:focus {
   }
 
 #imgWrapper {
-    background-image: url('../assets/bild.jpg');
+    background-image: url('');
     background-size: contain;
     position: absolute;
     background-position: center;
@@ -99,6 +103,7 @@ nav > div > a:hover, a:focus {
     transition: all 400ms cubic-bezier(0.075, 0.82, 0.165, 1)
 }
 
+
 .fullSize {
     margin: 0 !important;
     padding: 0 !important;
@@ -106,10 +111,6 @@ nav > div > a:hover, a:focus {
     width: 100vw !important;
 }
 
-.noScroll {
-    overflow: hidden;
-    position: fixed;
-}
 
 #info {
     position: absolute;
@@ -122,4 +123,8 @@ nav > div > a:hover, a:focus {
 
 .moveRight {
     transform: translate(25vw);
+}
+
+#spacer {
+    height: 800px;
 }

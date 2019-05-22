@@ -4,9 +4,38 @@ function prefetch(pathname) {
     const route = routes.find(route => route.path === pathname);
 
     if (route.shouldPrefetch && !route.prefetched) {
-        fetch(route.file, { cache: 'reload' });
+        fetch(route.file, {
+            cache: 'reload'
+        });
         route.prefetched = true;
     }
+}
+
+function lazyLoad() {
+    console.log("ich wurde ausgeführt")
+const images = document.querySelectorAll('.zoomable');
+const config = {
+    rootMargin: '50px 0px',
+    threshold: 0.01
+  };
+
+let observer = new IntersectionObserver(onIntersection, config);
+  images.forEach(image => {
+    observer.observe(image);
+  });
+
+  function onIntersection(entries) {
+    entries.forEach(entry => {
+      if (entry.intersectionRatio > 0) {
+        observer.unobserve(entry.target);
+        const img = entry.target;
+        img.classList.remove('fixedSize')
+        const src = img.getAttribute('data-src');
+
+        img.setAttribute('src', src);
+      }
+    });
+  }
 }
 
 window.onload = function () {
@@ -16,8 +45,7 @@ window.onload = function () {
 
     if (pathname === '' || !route) {
         window.location.hash = initalRoute.path;
-    }
-    else {
+    } else {
         window.onhashchange();
     }
 }
@@ -25,14 +53,17 @@ window.onload = function () {
 window.onhashchange = async function () {
     const pathname = window.location.hash.substring(1);
     const route = routes.find(route => route.path === pathname);
-    const res = await fetch(route.file, { cache: "force-cache" });
+    const res = await fetch(route.file, {
+        cache: "force-cache"
+    });
     anime({
         targets: '#app',
         opacity: 0,
         easing: 'easeInOutCirc',
         duration: 700,
-        complete: async function() {
+        complete: async function () {
             app.innerHTML = await res.text();
+            lazyLoad();
             anime({
                 targets: '#app',
                 opacity: 1,
@@ -40,6 +71,5 @@ window.onhashchange = async function () {
                 duration: 700,
             });
         }
-      });  
+    });
 }
-
