@@ -21,24 +21,22 @@ function openImgZoom(img) {
         easing: 'cubicBezier(.5, .05, .1, .3)',
         duration: 500,
     });
-    let imgHighRes = new Image();
-    imgHighRes.onload = function () {
-        imgWrapper.style.backgroundImage = 'url(' + path + ')';
-        EXIF.getData(imgHighRes, function () {
-            let date = EXIF.getTag(this, "DateTimeOriginal");
-            let iso = EXIF.getTag(this, "ISOSpeedRatings");
-            let Brennweite = EXIF.getTag(this, "FocalLengthIn35mmFilm");
-            let exposure = EXIF.getTag(this, "ExposureTime");
-            let aperture = EXIF.getTag(this, "ApertureValue");
-            info.innerHTML = `<h2>Bild Informationen</h2><br>
+    imgWrapper.style.backgroundImage = 'url(' + path + ')';
+    EXIF.getData(img, function () {
+        let date = EXIF.getTag(this, "DateTimeOriginal");
+        let iso = EXIF.getTag(this, "ISOSpeedRatings");
+        let Brennweite = EXIF.getTag(this, "FocalLengthIn35mmFilm");
+        let exposure = EXIF.getTag(this, "ExposureTime");
+        let aperture = EXIF.getTag(this, "ApertureValue");
+        info.innerHTML = `<h2>Bild Informationen</h2><br>
                              Datum: ${date} <br>
                              Iso: ${iso} <br>
                              Brennweite: ${Brennweite}mm <br>
                              Belichtungszeit: ${exposure.toFixed(4)}s <br>
                              Blende: ${aperture} `
-        });
-    };
-    imgHighRes.src = path;
+
+    });
+
 }
 
 zoomel.addEventListener('click', function (event) {

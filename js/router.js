@@ -12,14 +12,9 @@ function prefetch(pathname) {
 }
 
 function lazyLoad() {
-    console.log("ich wurde ausgeführt")
 const images = document.querySelectorAll('.zoomable');
-const config = {
-    rootMargin: '50px 0px',
-    threshold: 0.01
-  };
 
-let observer = new IntersectionObserver(onIntersection, config);
+let observer = new IntersectionObserver(onIntersection);
   images.forEach(image => {
     observer.observe(image);
   });
