@@ -35,6 +35,8 @@ function lazyLoad() {
 
 function scrollToTop() {
     app.scrollIntoView({behavior: 'smooth'});
+    const pathname = window.location.hash.substring(1);
+    history.replaceState(null, null, document.location.pathname + '#' + pathname.split('_')[0]);
 }
 
 window.onload = function () {

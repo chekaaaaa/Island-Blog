@@ -76,10 +76,16 @@ a:focus {
 
 #touren>div>ul {
     list-style: none;
+    margin-bottom: 20px;
+    margin-top: 5px;
 }
 
 #touren {
     margin: 20px;
+}
+
+#touren div > h2 {
+    margin-bottom: 5px;
 }
 
 #scrollToTop {
