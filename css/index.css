@@ -145,41 +145,31 @@ a:focus {
     z-index: 3;
 }
 
-#imgWrapper {
-    background-image: url('');
-    background-size: contain;
-    position: absolute;
-    background-position: center;
-    background-repeat: no-repeat;
-    margin-top: 15vh;
-    margin-left: 5vw;
-    height: 70vh;
-    width: 70vw;
-    transition: all 400ms cubic-bezier(0.075, 0.82, 0.165, 1)
+#zoomedImg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100vh;
+    transform: scale(0.6);
+    transition: all 400ms cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 
 .fullSize {
-    margin: 0 !important;
-    padding: 0 !important;
-    height: 100vh !important;
-    width: 100vw !important;
+    transform: scale(1) !important;
 }
 
 
 #info {
-    position: absolute;
-    margin-top: 15vh;
-    margin-left: 75vw;
+    position: fixed;
+    top: 38vh;
+    left: 75vw;
     padding: 25px;
+    z-index: 5;
     color: white;
     transition: all 400ms cubic-bezier(0.075, 0.82, 0.165, 1)
 }
 
 .moveRight {
     transform: translate(25vw);
-}
-
-#spacer {
-    height: 800px;
 }

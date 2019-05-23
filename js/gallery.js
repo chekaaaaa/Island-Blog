@@ -1,5 +1,5 @@
 const zoomel = document.getElementById("zoomel")
-const imgWrapper = document.getElementById("imgWrapper")
+const zoomedImg = document.getElementById("zoomedImg")
 const info = document.getElementById("info")
 
 
@@ -21,7 +21,7 @@ function openImgZoom(img) {
         easing: 'cubicBezier(.5, .05, .1, .3)',
         duration: 500,
     });
-    imgWrapper.style.backgroundImage = 'url(' + path + ')';
+    zoomedImg.src = path;
     EXIF.getData(img, function () {
         let date = EXIF.getTag(this, "DateTimeOriginal");
         let iso = EXIF.getTag(this, "ISOSpeedRatings");
@@ -40,8 +40,9 @@ function openImgZoom(img) {
 }
 
 zoomel.addEventListener('click', function (event) {
-    imgWrapper.classList.remove('fullSize');
-    if (!(event.path[0].id === 'imgWrapper')) {
+    zoomedImg.classList.remove('fullSize');
+    info.classList.remove('moveRight');
+    if (!(event.path[0].id === 'zoomedImg')) {
         anime({
             targets: zoomel,
             opacity: 0,
@@ -55,8 +56,8 @@ zoomel.addEventListener('click', function (event) {
     event.stopPropagation();
 })
 
-imgWrapper.addEventListener('click', function (event) {
+zoomedImg.addEventListener('click', function (event) {
     info.classList.toggle('moveRight');
-    imgWrapper.classList.toggle('fullSize');
+    zoomedImg.classList.toggle('fullSize');
     event.stopPropagation();
 })
