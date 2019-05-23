@@ -2,9 +2,6 @@ const zoomel = document.getElementById("zoomel")
 const zoomedImg = document.getElementById("zoomedImg")
 const info = document.getElementById("info")
 
-
-
-
 document.addEventListener('click', function (event) {
     if (event.path[0].classList.contains('zoomable')) {
         openImgZoom(event.path[0])

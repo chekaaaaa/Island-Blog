@@ -54,7 +54,7 @@ window.onload = function () {
 window.onhashchange = async function () {
     const pathname = window.location.hash.substring(1);
     if (pathname.includes('_')) {
-        var element = document.getElementById(pathname.split('_')[1]);
+        let element = document.getElementById(pathname.split('_')[1]);
         element.scrollIntoView({behavior: 'smooth'});
     } else {
         const route = routes.find(route => route.path === pathname);
