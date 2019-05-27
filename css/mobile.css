@@ -1,9 +1,5 @@
 @media (max-width: 768px) {
-    #zoomedImg {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-    }
+    
 }
 
 @media (max-width: 425px) {
