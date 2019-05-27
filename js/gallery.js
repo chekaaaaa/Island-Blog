@@ -37,9 +37,7 @@ function openImgZoom(img) {
 }
 
 zoomel.addEventListener('click', function (event) {
-    zoomedImg.classList.remove('fullSize');
-    info.classList.remove('moveRight');
-    if (!(event.path[0].id === 'zoomedImg')) {
+    if ((event.path[0].id === 'zoomel')) {
         anime({
             targets: zoomel,
             opacity: 0,
@@ -47,14 +45,14 @@ zoomel.addEventListener('click', function (event) {
             duration: 500,
             complete: function () {
                 zoomel.style.visibility = "hidden";
+                infoWrapper.classList.remove('visible');
+                zoomedImg.classList.remove('darken');
             }
         });
     }
-    event.stopPropagation();
-})
-
-zoomedImg.addEventListener('click', function (event) {
-    info.classList.toggle('moveRight');
-    zoomedImg.classList.toggle('fullSize');
+    else {
+        infoWrapper.classList.toggle('visible');
+        zoomedImg.classList.toggle('darken');
+    }
     event.stopPropagation();
 })
