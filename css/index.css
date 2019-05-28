@@ -108,8 +108,8 @@ a:focus {
     width: 200px;
     border-radius: 10px;
     position: fixed;
-    bottom: 30px;
-    right: 40px;
+    bottom: 2em;
+    right: 3em;
     z-index: 2;
     display: table;
     cursor: pointer;

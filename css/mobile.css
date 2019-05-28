@@ -5,7 +5,7 @@
 
     body {
         display: grid;
-        grid-template-areas: "nav" "app";
+        grid-template-areas: "nav""app";
         grid-template-rows: auto auto;
         grid-template-columns: 100%;
         overflow-y: scroll;
@@ -19,10 +19,10 @@
     }
 
     nav>h1 {
-    font-size: 24px;
-    position: absolute;
-    left: 5vw;
-    top: 1em;
+        font-size: 24px;
+        position: absolute;
+        left: 5vw;
+        top: 1em;
     }
 
     #links {
@@ -48,7 +48,11 @@
         max-width: 70vw;
         max-height: 80vh;
     }
-}   
+
+    .home {
+        height: calc(100vh - 4.8em);
+    }
+}
 
 @media (max-width: 425px) {
     h2 {
@@ -67,5 +71,13 @@
     #touren>div>span>img {
         max-width: 90vw;
         max-height: 80vh;
+    }
+
+    #scrollToTop {
+        right: 0;
+        left: 0;
+        margin-right: auto;
+        margin-left: auto;
+        bottom: 1em;
     }
 }
