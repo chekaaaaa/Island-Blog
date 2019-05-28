@@ -43,6 +43,11 @@
     nav:hover #links {
         visibility: visible;
     }
+
+    #touren>div>span>img {
+        max-width: 70vw;
+        max-height: 80vh;
+    }
 }   
 
 @media (max-width: 425px) {
@@ -57,5 +62,10 @@
     #infoWrapper {
         width: 80vw;
         text-align: center;
+    }
+
+    #touren>div>span>img {
+        max-width: 90vw;
+        max-height: 80vh;
     }
 }
