@@ -34,13 +34,13 @@ nav>h1 {
     top: 30%;
 }
 
-nav>div {
+#links {
     position: fixed;
     left: 20px;
     top: calc(30% + 3em)
 }
 
-nav>div>a {
+#links>a {
     font-size: 22px;
     text-decoration: none;
     color: white;
@@ -52,7 +52,7 @@ nav>div>a {
 }
 
 
-nav>div>a:hover,
+#links>a:hover,
 a:focus {
     background-size: 100% 3px;
 }
