@@ -1,14 +1,20 @@
 @media (max-width: 768px) {
-    
+    #gallery>div>img {
+        width: calc(100% / 2 - 9px);
+    }
 }
 
 @media (max-width: 425px) {
     h2 {
         font-size: 20px;
     }
-    
+
+    #gallery>div>img {
+        width: calc(100% - 9px);
+    }
+
     #infoWrapper {
         width: 80vw;
-        text-align: center;        
+        text-align: center;
     }
 }
