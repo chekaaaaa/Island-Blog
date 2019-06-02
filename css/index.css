@@ -34,6 +34,10 @@ nav>h1 {
     top: 30%;
 }
 
+#hamburger {
+    visibility: hidden;
+}
+
 #links {
     position: fixed;
     left: 20px;
