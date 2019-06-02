@@ -3,8 +3,8 @@ const zoomedImg = document.getElementById("zoomedImg")
 const info = document.getElementById("info")
 
 document.addEventListener('click', function (event) {
-    if (event.path[0].classList.contains('zoomable')) {
-        openImgZoom(event.path[0])
+    if (event.target.classList.contains('zoomable')) {
+        openImgZoom(event.target)
     }
 })
 
@@ -37,7 +37,7 @@ function openImgZoom(img) {
 }
 
 zoomel.addEventListener('click', function (event) {
-    if ((event.path[0].id === 'zoomel')) {
+    if ((event.target.id === 'zoomel')) {
         anime({
             targets: zoomel,
             opacity: 0,
