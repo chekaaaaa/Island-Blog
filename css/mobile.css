@@ -36,11 +36,11 @@
         padding-top: calc(100vh - 4.8em);
     }
 
-    nav:hover {
+    nav:hover, nav:active {
         height: 13em
     }
 
-    nav:hover #links {
+    nav:hover #links, nav:active #links {
         visibility: visible;
     }
 
