@@ -1,6 +1,7 @@
 const zoomel = document.getElementById("zoomel")
 const zoomedImg = document.getElementById("zoomedImg")
 const info = document.getElementById("info")
+const beschreibung = document.getElementById("beschreibung")
 
 document.addEventListener('click', function (event) {
     if (event.target.classList.contains('zoomable')) {
@@ -18,6 +19,7 @@ function openImgZoom(img) {
         easing: 'cubicBezier(.5, .05, .1, .3)',
         duration: 500,
     });
+    beschreibung.innerHTML = img.alt;
     zoomedImg.src = path;
     EXIF.getData(img, function () {
         let date = EXIF.getTag(this, "DateTimeOriginal");
@@ -47,12 +49,14 @@ zoomel.addEventListener('click', function (event) {
                 zoomel.style.visibility = "hidden";
                 infoWrapper.classList.remove('visible');
                 zoomedImg.classList.remove('darken');
+                beschreibung.classList.remove('darken');
             }
         });
     }
     else {
         infoWrapper.classList.toggle('visible');
         zoomedImg.classList.toggle('darken');
+        beschreibung.classList.toggle('darken');
     }
     event.stopPropagation();
 })

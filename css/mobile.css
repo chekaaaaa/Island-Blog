@@ -43,27 +43,36 @@
     }
 
     @keyframes fadeIn {
-        0% {opacity: 0}
-        100% {opacity: 1}
+        0% {
+            opacity: 0
+        }
+
+        100% {
+            opacity: 1
+        }
     }
 
     #container {
         padding-top: calc(100vh - 4.8em);
     }
 
-    nav:hover, nav:active {
+    nav:hover,
+    nav:active {
         height: 13em
     }
 
-    nav:hover #links, nav:active #links {
+    nav:hover #links,
+    nav:active #links {
         display: block;
     }
 
-    nav:hover h1, nav:active h1 {
+    nav:hover h1,
+    nav:active h1 {
         left: 4vw;
     }
 
-    nav:hover #hamburger, nav:active #hamburger {
+    nav:hover #hamburger,
+    nav:active #hamburger {
         transform: translateX(-40px);
         opacity: 0;
     }
