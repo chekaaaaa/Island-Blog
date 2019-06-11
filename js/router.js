@@ -34,60 +34,8 @@ function lazyLoad() {
 }
 
 function slideshows() {
-    let slideshows = document.querySelectorAll('.slideshow');
-    for (let i = 0; i < slideshows.length; i++) {
-        let imgArray = slideshows[i].children;
-        imgArray[0].style.opacity = 1;
-        for (let i = 1; i < imgArray.length; i++) {
-            imgArray[i].style.display = "none";
-        }
-    }
-    setInterval(function () {
-            let slideshows = document.querySelectorAll('.slideshow');
-            for (let i = 0; i < slideshows.length; i++) {
-                let imgArray = slideshows[i].children;
-                let currentImg;
-                for (let i = 0; i < imgArray.length; i++) {
-                    if (imgArray[i].style.display !== "none") {
-                        currentImg = i
-                    }
-                }
-                let animatingOut = currentImg
-                anime({
-                        targets: imgArray[animatingOut],
-                        opacity: 0,
-                        translateX: -80,
-                        easing: 'easeInOutCirc',
-                        duration: 700,
-                        complete: function () {
-                            imgArray[animatingOut].style.display = "none";
-                            imgArray[animatingOut].style.transform = "translate(0)";
-                            }
-                        });
-                        currentImg++;
-                    if (currentImg === imgArray.length) {
-                        currentImg = 0;
-                    }
-                    imgArray[currentImg].style.display = "block"; anime({
-                        targets: imgArray[currentImg],
-                        opacity: 1,
-                        translateX: [{
-                                value: 80,
-                                duration: 1
-                            },
-                            {
-                                value: 0,
-                                duration: 699
-                            }
-                        ],
-                        easing: 'easeInOutCirc',
-                        duration: 700,
-                    });
-
-
-
-                }
-            }, 3200);
+    
+  
     }
 
     function scrollToTop() {
@@ -130,7 +78,7 @@ function slideshows() {
                 complete: async function () {
                     app.innerHTML = await res.text();
                     lazyLoad();
-                    slideshows();
+                    //slideshows();
                     anime({
                         targets: '#app',
                         opacity: 1,
