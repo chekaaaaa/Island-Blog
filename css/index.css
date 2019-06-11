@@ -91,6 +91,7 @@ a:focus {
     overflow-y: hidden;
     white-space: nowrap;
     scroll-snap-type: x mandatory;
+    margin: 15px 0;
 }
 
 .slideshow>img {
@@ -100,7 +101,6 @@ a:focus {
     display: inline-block;
     scroll-snap-align: center;
 }
-
 
 #touren>div>ul>li>a:hover,
 a:focus {
