@@ -83,6 +83,23 @@ a:focus {
     cursor: zoom-in;
 }
 
+.slideshow {
+    height: 50vh;
+    position: relative;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.slideshow>img {
+    width: auto;
+    position: absolute;
+    height: 100%;
+    display: block;
+    opacity: 0;
+    cursor: zoom-in;
+}
+
 
 #touren>div>ul>li>a:hover,
 a:focus {
