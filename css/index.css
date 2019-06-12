@@ -158,8 +158,16 @@ a:focus {
 }
 
 
-#gallery>div>img {
-    width: calc(100% / 3 - 9px);
+.galleryimg {
+    max-width: calc(100% / 3 - 3px);
+}
+
+.landscape {
+    max-width: 100% !important;
+}
+
+.slideshow>.landscape {
+    max-width: unset !important;
 }
 
 #gallery>div>img:hover {

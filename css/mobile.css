@@ -1,6 +1,6 @@
 @media (max-width: 768px) {
-    #gallery>div>img {
-        width: calc(100% / 2 - 9px);
+    .galleryimg {
+        max-width: calc(100% / 2 - 3px);
     }
 
     body {
@@ -93,8 +93,13 @@
         font-size: 20px;
     }
 
-    #gallery>div>img {
-        width: calc(100% - 9px);
+    #gallery>div>h1 {
+        font-size: 24px;
+        margin: 0.5em 0;
+    }
+
+    .galleryimg {
+        max-width: 100%
     }
 
     #infoWrapper {
