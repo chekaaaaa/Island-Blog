@@ -98,6 +98,10 @@
         margin: 0.5em 0;
     }
 
+    .slideshow {
+        scroll-snap-type: unset;
+    }
+
     .galleryimg {
         max-width: 100%
     }
