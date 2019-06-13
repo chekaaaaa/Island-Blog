@@ -9,8 +9,42 @@ document.addEventListener('click', function (event) {
     }
 })
 
+function nextImg() {
+    let currentImgSrc = zoomedImg.src;
+    currentImgSrc = currentImgSrc.replace('_high.jpg', '.jpg');
+    let allImgs = document.querySelectorAll("img");
+    allImgs.forEach(function (img, index) {
+        if (img.src === currentImgSrc) {
+            index++
+            let maxIndex = allImgs.length - 1
+            if (index !== maxIndex) {
+                openImgZoom(allImgs[index])
+            }
+        }
+    })
+    event.stopPropagation();
+}
+
+function lastImg() {
+    let currentImgSrc = zoomedImg.src;
+    currentImgSrc = currentImgSrc.replace('_high.jpg', '.jpg');
+    let allImgs = document.querySelectorAll("img");
+    allImgs.forEach(function (img, index) {
+        if (img.src === currentImgSrc) {
+            index--
+            if (index !== 0) {
+                openImgZoom(allImgs[index])
+            }
+        }
+    })
+    event.stopPropagation();
+}
+
 function openImgZoom(img) {
     let path = img.src
+    if (path === "") {
+        path = img.getAttribute('data-src');
+    }
     path = path.replace('.jpg', '_high.jpg');
     zoomel.style.visibility = "visible";
     anime({
@@ -52,8 +86,7 @@ zoomel.addEventListener('click', function (event) {
                 beschreibung.classList.remove('darken');
             }
         });
-    }
-    else {
+    } else {
         infoWrapper.classList.toggle('visible');
         zoomedImg.classList.toggle('darken');
         beschreibung.classList.toggle('darken');

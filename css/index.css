@@ -199,6 +199,20 @@ a:focus {
     transition: all 400ms cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
+#arrowLeft {
+    position: absolute;
+    top: calc(50% - 30px);
+    left: 30px;
+    transform: translateX(-50%);
+}
+
+#arrowRight {
+    position: absolute;
+    top: calc(50% - 30px);
+    right: -30px;
+    transform: translateX(-50%);
+}
+
 #beschreibung {
     color: white;
     position: absolute;
