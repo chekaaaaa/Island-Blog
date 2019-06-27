@@ -74,18 +74,7 @@ function openImgZoom(img) {
 
 zoomel.addEventListener('click', function (event) {
     if ((event.target.id === 'zoomel')) {
-        anime({
-            targets: zoomel,
-            opacity: 0,
-            easing: 'cubicBezier(.5, .05, .1, .3)',
-            duration: 500,
-            complete: function () {
-                zoomel.style.visibility = "hidden";
-                infoWrapper.classList.remove('visible');
-                zoomedImg.classList.remove('darken');
-                beschreibung.classList.remove('darken');
-            }
-        });
+        closeImgZoom()
     } else {
         infoWrapper.classList.toggle('visible');
         zoomedImg.classList.toggle('darken');
@@ -93,3 +82,18 @@ zoomel.addEventListener('click', function (event) {
     }
     event.stopPropagation();
 })
+
+function closeImgZoom() {
+    anime({
+        targets: zoomel,
+        opacity: 0,
+        easing: 'cubicBezier(.5, .05, .1, .3)',
+        duration: 500,
+        complete: function () {
+            zoomel.style.visibility = "hidden";
+            infoWrapper.classList.remove('visible');
+            zoomedImg.classList.remove('darken');
+            beschreibung.classList.remove('darken');
+        }
+    });
+}
