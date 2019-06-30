@@ -1,4 +1,5 @@
 const app = document.getElementById('app');
+var saveScroll = document.getElementById("saveScroll");
 
 function prefetch(pathname) {
     const route = routes.find(route => route.path === pathname);
@@ -57,11 +58,24 @@ window.onload = function () {
 
 window.onhashchange = async function () {
     const pathname = window.location.hash.substring(1);
-    if (pathname.includes('_')) {
-        let element = document.getElementById(pathname.split('_')[1]);
-        element.scrollIntoView({
-            behavior: 'smooth'
-        });
+    switch (expr) {
+    if (pathname.includes('touren')) {
+        if (pathname.includes('_')) {
+            let element = document.getElementById(pathname.split('_')[1]);
+            element.scrollIntoView({
+                behavior: 'smooth'
+            });
+        } else {
+            if (saveScroll.checked == true) {
+                if (typeof (Storage) !== "undefined") {
+                    if (localStorage.getItem("scroll") !== 0) {
+                        app.scrollTop = localStorage.getItem("scroll");
+                    } else {
+                        localStorage.setItem("scrollTop", app.scrollTop);
+                    }
+                }
+            }
+        }
     } else {
         const route = routes.find(route => route.path === pathname);
         const res = await fetch(route.file, {
