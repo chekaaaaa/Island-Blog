@@ -1,5 +1,4 @@
 const app = document.getElementById('app');
-var saveScroll = document.getElementById("saveScroll");
 
 function prefetch(pathname) {
     const route = routes.find(route => route.path === pathname);
@@ -56,9 +55,51 @@ window.onload = function () {
     }
 }
 
+function saveCheckboxState() {
+    var saveScroll = document.getElementById("saveScroll");
+    if (typeof (Storage) !== "undefined") {
+        if (saveScroll.checked == true) {
+            localStorage.setItem('checkbox', "true")
+        } else {
+            localStorage.setItem('checkbox', "false")
+        }
+    }
+}
+
+function handleSaveScroll() {
+    if (typeof (Storage) !== "undefined") {
+        let checkbox = document.getElementById("saveScroll");
+        if (localStorage.getItem('checkbox') == "true") {
+            checkbox.checked = true;
+        } else {
+            checkbox.checked = false;
+        }
+        if (checkbox.checked == true) {
+            let getOffset = localStorage.getItem("scroll")
+            if (getOffset > 0) {
+                window.scroll(0, getOffset);
+            } else {
+                let offset = window.pageYOffset || document.documentElement.scrollTop;
+                localStorage.setItem("scroll", offset);
+            }
+        }
+    }
+}
+
+window.onscroll = function () { 
+    if (window.location.hash.substring(1).includes('touren')) {
+        let checkbox = document.getElementById("saveScroll");
+        if (checkbox.checked == true) {
+            let offset = window.pageYOffset || document.documentElement.scrollTop;
+            localStorage.setItem("scroll", offset);
+        }
+    }
+}
+
+
+
 window.onhashchange = async function () {
     const pathname = window.location.hash.substring(1);
-    switch (expr) {
     if (pathname.includes('touren')) {
         if (pathname.includes('_')) {
             let element = document.getElementById(pathname.split('_')[1]);
@@ -66,15 +107,27 @@ window.onhashchange = async function () {
                 behavior: 'smooth'
             });
         } else {
-            if (saveScroll.checked == true) {
-                if (typeof (Storage) !== "undefined") {
-                    if (localStorage.getItem("scroll") !== 0) {
-                        app.scrollTop = localStorage.getItem("scroll");
-                    } else {
-                        localStorage.setItem("scrollTop", app.scrollTop);
-                    }
+            const route = routes.find(route => route.path === pathname);
+            const res = await fetch(route.file, {
+                cache: "force-cache"
+            });
+            anime({
+                targets: '#app',
+                opacity: 0,
+                easing: 'easeInOutCirc',
+                duration: 700,
+                complete: async function () {
+                    app.innerHTML = await res.text();
+                    lazyLoad();
+                    handleSaveScroll();
+                    anime({
+                        targets: '#app',
+                        opacity: 1,
+                        easing: 'easeInOutCirc',
+                        duration: 700,
+                    });
                 }
-            }
+            });
         }
     } else {
         const route = routes.find(route => route.path === pathname);
